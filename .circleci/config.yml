@@ -36,6 +36,7 @@ jobs:
           command: |
             IMAGE_TAG="v${CIRCLE_BUILD_NUM}"
             echo "$DOCKER_PWD" | docker login -u "$DOCKER_UNAME" --password-stdin 
+            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
             docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:$IMAGE_TAG
 workflows:
