@@ -46,14 +46,8 @@ workflows:
       - build:
           context:
             - test
-          filters:
-            branches:
-              only: dev
       - publish-latest:
           context:
             - test
           requires:
             - build
-          filters:
-            branches:
-              only: dev
