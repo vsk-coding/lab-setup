@@ -6,6 +6,15 @@ executors:
     docker:
       - image: circleci/buildpack-deps:trusty
 jobs:
+  PR-branch:
+    steps:
+      -run:
+        name: PR Branch number
+        command: |
+            echo "$CIRCLE_PR_NUMBER"	
+            echo "$CIRCLE_PR_REPONAME"
+            echo "$CIRCLE_PR_USERNAME"	
+
   docker-build-publish:
     executor: docker-publisher
     steps:
@@ -27,12 +36,10 @@ workflows:
   version: 2
   build-master:
     jobs:
+      - PR-branch
       - docker-build-publish:
           context:
             - test
-          filters:
-            branches:
-              only:
-                - dev
+
 
           
