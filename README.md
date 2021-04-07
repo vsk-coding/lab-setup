@@ -27,5 +27,5 @@
 
 ## How to RUN
 
-sudo docker run --rm -d -p 80:80 vishnusk/devsecops-lab 
+>sudo docker run --rm -d -p 80:80 vishnusk/devsecops-lab 
 
