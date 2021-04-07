@@ -16,7 +16,7 @@ jobs:
             echo "$CIRCLE_PR_NUMBER"
             echo "$CIRCLE_BRANCH"
       - run: |
-          if [ ! "$CIRCLE_BRANCH" = "pull*" ]; then
+          if [ "$CIRCLE_BRANCH" = "pull*" ]; then
             echo "$CIRCLE_BRANCH"
           fi
   docker-build-publish:
