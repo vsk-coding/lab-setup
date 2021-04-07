@@ -25,7 +25,7 @@
 14. JavaScript		http://<ip>/vulnerabilities/javascript/
 
 
-##How to RUN
+##howtorun
 
 sudo docker run --rm -d -p 80:80 vishnusk/devsecops-lab 
 
