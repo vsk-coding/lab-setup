@@ -37,7 +37,15 @@ workflows:
   version: 2
   build-master:
     jobs:
-      - PR-branch
+      - PR-branch:
+          filters:
+            branches:
+              only: dev
       - docker-build-publish:
           context:
             - test
+          requires:
+            - PR-branch
+          filters:
+            branches:
+              only: dev
