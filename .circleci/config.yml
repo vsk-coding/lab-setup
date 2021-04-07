@@ -14,8 +14,7 @@ jobs:
           name: PR Branch number
           command: |
             echo "$CIRCLE_PR_NUMBER"
-            echo "$CIRCLE_PR_REPONAME"	
-            echo "$CIRCLE_PR_USERNAME"
+            echo "$CIRCLE_BRANCH"
   docker-build-publish:
     executor: docker-publisher
     steps:
