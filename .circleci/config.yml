@@ -15,6 +15,10 @@ jobs:
           command: |
             echo "$CIRCLE_PR_NUMBER"
             echo "$CIRCLE_BRANCH"
+      - run: |
+          if [ "$CIRCLE_BRANCH" = "develop" ]; then
+            circleci-agent step halt
+          fi
   docker-build-publish:
     executor: docker-publisher
     steps:
