@@ -8,10 +8,11 @@ executors:
 jobs:
   PR-branch:
     steps:
-      run:
-        name: PR Branch number
-        command: |
-          echo "$CIRCLE_PR_NUMBER"	
+      - checkout
+      - run:
+          name: PR Branch number
+          command: |
+            echo "$CIRCLE_PR_NUMBER"	
   docker-build-publish:
     executor: docker-publisher
     steps:
@@ -37,6 +38,3 @@ workflows:
       - docker-build-publish:
           context:
             - test
-
-
-          
