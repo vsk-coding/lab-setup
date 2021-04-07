@@ -1,8 +1,13 @@
-# lab-setup
+# DevSecOps Lab-Setup
 
-DVWA application 
+>Application used -- DVWA
 
-Vulnerabilities 
+
+# Table of Contents
+* [Vulnerabilities](#vulnerabilities)
+* [How to RUN](#howtorun)
+
+## Vulnerabilities
 
 1. Brute Force		http://<ip>/vulnerabilities/brute/
 2. Command Injection	http://<ip>/vulnerabilities/exec/
@@ -18,3 +23,9 @@ Vulnerabilities
 12. XSS (Stored)		http://<ip>/vulnerabilities/xss_s/
 13. CSP Bypass 		http://<ip>/vulnerabilities/csp/
 14. JavaScript		http://<ip>/vulnerabilities/javascript/
+
+
+##How to RUN
+
+sudo docker run --rm -d -p 80:80 vishnusk/devsecops-lab 
+
