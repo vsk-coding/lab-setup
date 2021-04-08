@@ -45,8 +45,8 @@ if( isset( $_POST[ 'Login' ] ) ) {
 	}
 
 	// Login failed
-	dvwaMessagePush( 'Login failed' );
-	dvwaRedirect( 'login.php' );
+	// dvwaMessagePush( 'Login failed' );
+	// dvwaRedirect( 'login.php' );
 }
 
 $messagesHtml = messagesPopAllToHtml();
