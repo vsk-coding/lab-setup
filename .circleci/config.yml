@@ -14,11 +14,10 @@ jobs:
       - run:
           name: ZAP test
           command: |
-            ipval=$(ip -f inet -o addr show eth0 | awk '{print $4}' | cut -d '/' -f 1)
+            
             docker network create zapnet
             docker run --rm --name labimg -d -p 80:80 $IMAGE_NAME:latest
-            curl http://localhost/login.php
-            docker run --name zapimg-t owasp/zap2docker-weekly zap-baseline.py -t http://$ipval/login.php
+            
             docker run --name zapimg-t owasp/zap2docker-weekly zap-baseline.py -t http://$(ip -f inet -o addr show eth0 | awk '{print $4}' | cut -d '/' -f 1)/login.php
 
   docker-build-publish:
