@@ -6,7 +6,7 @@ executors:
     docker:
       - image: circleci/buildpack-deps:trusty
 jobs:
-  PR-branch:
+  zap-test:
     executor: docker-publisher
     steps:
       - checkout
@@ -39,9 +39,9 @@ workflows:
   version: 2
   build-master:
     jobs:
-      - ZAP test
+      - zap-test
       - docker-build-publish:
           context:
             - test
           requires:
-            - ZAP test
+            - zap-test
