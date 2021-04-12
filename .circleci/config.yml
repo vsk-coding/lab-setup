@@ -17,6 +17,7 @@ jobs:
             docker network create zapnet
             docker run --rm --name labimg -d -p 80:80 vishnusk/devsecops-lab:latest
             echo $(pwd)
+            ls
             
             docker run --name zapimg -t owasp/zap2docker-stable zap-full-scan.py -t  http://$(ip -f inet -o addr show eth0 | awk '{print $4}' | cut -d '/' -f 1)/login.php -n context
   docker-build-publish:
