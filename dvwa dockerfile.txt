@@ -1,0 +1,244 @@
+Potential secrets:
+|Found match var/www/html/config/config.inc.php PHP configuration file \A(.*)?config(\.inc)?\.php\z 309e9cabb306cb82063dfa855b2eebc2469f12a125207d3e1c399fbc7d46eb24/layer.tar
+|Found match var/www/html/.htaccess apache/nginx htaccess 388ba4aff664a53dc44df7ee42315e1f1c93317f80f558c8fcd3204d54baafbd/layer.tar
+|Found match etc/ssl/private/ssl-cert-snakeoil.key openssl .key, apple .keychain, etc. \.key$ 8ccf3992dd4c0b916040a63cabb023d68d200ea64a41c2711667e058af52e6f5/layer.tar
+|Found match var/www/html/.htaccess apache/nginx htaccess bd23f2e0419d95e5b0aea8428c3e9a72857a466ae96cbf56e277db75fca317cd/layer.tar
+|Found match var/www/html/config/config.inc.php PHP configuration file \A(.*)?config(\.inc)?\.php\z bd23f2e0419d95e5b0aea8428c3e9a72857a466ae96cbf56e277db75fca317cd/layer.tar
+Dockerfile:
+CMD ["bash"]
+LABEL maintainer=opsxcq@strm.sh
+RUN apt-get update  \
+	&& apt-get upgrade -y  \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y debconf-utils  \
+	&& echo mariadb-server mysql-server/root_password password vulnerables | debconf-set-selections  \
+	&& echo mariadb-server mysql-server/root_password_again password vulnerables | debconf-set-selections  \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 mariadb-server php php-mysql php-pgsql php-pear php-gd  \
+	&& apt-get clean  \
+	&& rm -rf /var/lib/apt/lists/*
+COPY file:e1162a50525b284972b663daef5ca505c724673da0dda9a707bc8f67e4ec1220 in /etc/php5/apache2/php.ini
+	etc/
+	etc/php5/
+	etc/php5/apache2/
+	etc/php5/apache2/php.ini
+
+COPY dir:9c23b23aaae913c12ab3d2659b4d45398ee5652ed113267814c49d9ba501992a in /var/www/html
+	var/
+	var/www/
+	var/www/html/
+	var/www/html/.htaccess
+	var/www/html/CHANGELOG.md
+	var/www/html/COPYING.txt
+	var/www/html/README.md
+	var/www/html/about.php
+	var/www/html/config/
+	var/www/html/config/config.inc.php.dist
+	var/www/html/docs/
+	var/www/html/docs/DVWA_v1.3.pdf
+	var/www/html/docs/pdf.html
+	var/www/html/dvwa/
+	var/www/html/dvwa/css/
+	var/www/html/dvwa/css/help.css
+	var/www/html/dvwa/css/login.css
+	var/www/html/dvwa/css/main.css
+	var/www/html/dvwa/css/source.css
+	var/www/html/dvwa/images/
+	var/www/html/dvwa/images/RandomStorm.png
+	var/www/html/dvwa/images/dollar.png
+	var/www/html/dvwa/images/lock.png
+	var/www/html/dvwa/images/login_logo.png
+	var/www/html/dvwa/images/logo.png
+	var/www/html/dvwa/images/spanner.png
+	var/www/html/dvwa/images/warning.png
+	var/www/html/dvwa/includes/
+	var/www/html/dvwa/includes/DBMS/
+	var/www/html/dvwa/includes/DBMS/MySQL.php
+	var/www/html/dvwa/includes/DBMS/PGSQL.php
+	var/www/html/dvwa/includes/dvwaPage.inc.php
+	var/www/html/dvwa/includes/dvwaPhpIds.inc.php
+	var/www/html/dvwa/js/
+	var/www/html/dvwa/js/add_event_listeners.js
+	var/www/html/dvwa/js/dvwaPage.js
+	var/www/html/favicon.ico
+	var/www/html/hackable/
+	var/www/html/hackable/flags/
+	var/www/html/hackable/flags/fi.php
+	var/www/html/hackable/uploads/
+	var/www/html/hackable/uploads/dvwa_email.png
+	var/www/html/hackable/users/
+	var/www/html/hackable/users/1337.jpg
+	var/www/html/hackable/users/admin.jpg
+	var/www/html/hackable/users/gordonb.jpg
+	var/www/html/hackable/users/pablo.jpg
+	var/www/html/hackable/users/smithy.jpg
+	var/www/html/ids_log.php
+	var/www/html/index.php
+	var/www/html/instructions.php
+	var/www/html/login.php
+	var/www/html/logout.php
+	var/www/html/php.ini
+	var/www/html/phpinfo.php
+	var/www/html/robots.txt
+	var/www/html/security.php
+	var/www/html/setup.php
+	var/www/html/vulnerabilities/
+	var/www/html/vulnerabilities/brute/
+	var/www/html/vulnerabilities/brute/help/
+	var/www/html/vulnerabilities/brute/help/help.php
+	var/www/html/vulnerabilities/brute/index.php
+	var/www/html/vulnerabilities/brute/source/
+	var/www/html/vulnerabilities/brute/source/high.php
+	var/www/html/vulnerabilities/brute/source/impossible.php
+	var/www/html/vulnerabilities/brute/source/low.php
+	var/www/html/vulnerabilities/brute/source/medium.php
+	var/www/html/vulnerabilities/captcha/
+	var/www/html/vulnerabilities/captcha/help/
+	var/www/html/vulnerabilities/captcha/help/help.php
+	var/www/html/vulnerabilities/captcha/index.php
+	var/www/html/vulnerabilities/captcha/source/
+	var/www/html/vulnerabilities/captcha/source/high.php
+	var/www/html/vulnerabilities/captcha/source/impossible.php
+	var/www/html/vulnerabilities/captcha/source/low.php
+	var/www/html/vulnerabilities/captcha/source/medium.php
+	var/www/html/vulnerabilities/csp/
+	var/www/html/vulnerabilities/csp/help/
+	var/www/html/vulnerabilities/csp/help/help.php
+	var/www/html/vulnerabilities/csp/index.php
+	var/www/html/vulnerabilities/csp/source/
+	var/www/html/vulnerabilities/csp/source/high.js
+	var/www/html/vulnerabilities/csp/source/high.php
+	var/www/html/vulnerabilities/csp/source/impossible.js
+	var/www/html/vulnerabilities/csp/source/impossible.php
+	var/www/html/vulnerabilities/csp/source/jsonp.php
+	var/www/html/vulnerabilities/csp/source/jsonp_impossible.php
+	var/www/html/vulnerabilities/csp/source/low.php
+	var/www/html/vulnerabilities/csp/source/medium.php
+	var/www/html/vulnerabilities/csrf/
+	var/www/html/vulnerabilities/csrf/help/
+	var/www/html/vulnerabilities/csrf/help/help.php
+	var/www/html/vulnerabilities/csrf/index.php
+	var/www/html/vulnerabilities/csrf/source/
+	var/www/html/vulnerabilities/csrf/source/high.php
+	var/www/html/vulnerabilities/csrf/source/impossible.php
+	var/www/html/vulnerabilities/csrf/source/low.php
+	var/www/html/vulnerabilities/csrf/source/medium.php
+	var/www/html/vulnerabilities/exec/
+	var/www/html/vulnerabilities/exec/help/
+	var/www/html/vulnerabilities/exec/help/help.php
+	var/www/html/vulnerabilities/exec/index.php
+	var/www/html/vulnerabilities/exec/source/
+	var/www/html/vulnerabilities/exec/source/high.php
+	var/www/html/vulnerabilities/exec/source/impossible.php
+	var/www/html/vulnerabilities/exec/source/low.php
+	var/www/html/vulnerabilities/exec/source/medium.php
+	var/www/html/vulnerabilities/fi/
+	var/www/html/vulnerabilities/fi/file1.php
+	var/www/html/vulnerabilities/fi/file2.php
+	var/www/html/vulnerabilities/fi/file3.php
+	var/www/html/vulnerabilities/fi/file4.php
+	var/www/html/vulnerabilities/fi/help/
+	var/www/html/vulnerabilities/fi/help/help.php
+	var/www/html/vulnerabilities/fi/include.php
+	var/www/html/vulnerabilities/fi/index.php
+	var/www/html/vulnerabilities/fi/source/
+	var/www/html/vulnerabilities/fi/source/high.php
+	var/www/html/vulnerabilities/fi/source/impossible.php
+	var/www/html/vulnerabilities/fi/source/low.php
+	var/www/html/vulnerabilities/fi/source/medium.php
+	var/www/html/vulnerabilities/javascript/
+	var/www/html/vulnerabilities/javascript/help/
+	var/www/html/vulnerabilities/javascript/help/help.php
+	var/www/html/vulnerabilities/javascript/index.php
+	var/www/html/vulnerabilities/javascript/source/
+	var/www/html/vulnerabilities/javascript/source/high.js
+	var/www/html/vulnerabilities/javascript/source/high.php
+	var/www/html/vulnerabilities/javascript/source/high_unobfuscated.js
+	var/www/html/vulnerabilities/javascript/source/impossible.php
+	var/www/html/vulnerabilities/javascript/source/low.php
+	var/www/html/vulnerabilities/javascript/source/medium.js
+	var/www/html/vulnerabilities/javascript/source/medium.php
+	var/www/html/vulnerabilities/sqli/
+	var/www/html/vulnerabilities/sqli/help/
+	var/www/html/vulnerabilities/sqli/help/help.php
+	var/www/html/vulnerabilities/sqli/index.php
+	var/www/html/vulnerabilities/sqli/session-input.php
+	var/www/html/vulnerabilities/sqli/source/
+	var/www/html/vulnerabilities/sqli/source/high.php
+	var/www/html/vulnerabilities/sqli/source/impossible.php
+	var/www/html/vulnerabilities/sqli/source/low.php
+	var/www/html/vulnerabilities/sqli/source/medium.php
+	var/www/html/vulnerabilities/sqli_blind/
+	var/www/html/vulnerabilities/sqli_blind/cookie-input.php
+	var/www/html/vulnerabilities/sqli_blind/help/
+	var/www/html/vulnerabilities/sqli_blind/help/help.php
+	var/www/html/vulnerabilities/sqli_blind/index.php
+	var/www/html/vulnerabilities/sqli_blind/source/
+	var/www/html/vulnerabilities/sqli_blind/source/high.php
+	var/www/html/vulnerabilities/sqli_blind/source/impossible.php
+	var/www/html/vulnerabilities/sqli_blind/source/low.php
+	var/www/html/vulnerabilities/sqli_blind/source/medium.php
+	var/www/html/vulnerabilities/upload/
+	var/www/html/vulnerabilities/upload/help/
+	var/www/html/vulnerabilities/upload/help/help.php
+	var/www/html/vulnerabilities/upload/index.php
+	var/www/html/vulnerabilities/upload/source/
+	var/www/html/vulnerabilities/upload/source/high.php
+	var/www/html/vulnerabilities/upload/source/impossible.php
+	var/www/html/vulnerabilities/upload/source/low.php
+	var/www/html/vulnerabilities/upload/source/medium.php
+	var/www/html/vulnerabilities/view_help.php
+	var/www/html/vulnerabilities/view_source.php
+	var/www/html/vulnerabilities/view_source_all.php
+	var/www/html/vulnerabilities/weak_id/
+	var/www/html/vulnerabilities/weak_id/help/
+	var/www/html/vulnerabilities/weak_id/help/help.php
+	var/www/html/vulnerabilities/weak_id/index.php
+	var/www/html/vulnerabilities/weak_id/source/
+	var/www/html/vulnerabilities/weak_id/source/high.php
+	var/www/html/vulnerabilities/weak_id/source/impossible.php
+	var/www/html/vulnerabilities/weak_id/source/low.php
+	var/www/html/vulnerabilities/weak_id/source/medium.php
+	var/www/html/vulnerabilities/xss_d/
+	var/www/html/vulnerabilities/xss_d/help/
+	var/www/html/vulnerabilities/xss_d/help/help.php
+	var/www/html/vulnerabilities/xss_d/index.php
+	var/www/html/vulnerabilities/xss_d/source/
+	var/www/html/vulnerabilities/xss_d/source/high.php
+	var/www/html/vulnerabilities/xss_d/source/impossible.php
+	var/www/html/vulnerabilities/xss_d/source/low.php
+	var/www/html/vulnerabilities/xss_d/source/medium.php
+	var/www/html/vulnerabilities/xss_r/
+	var/www/html/vulnerabilities/xss_r/help/
+	var/www/html/vulnerabilities/xss_r/help/help.php
+	var/www/html/vulnerabilities/xss_r/index.php
+	var/www/html/vulnerabilities/xss_r/source/
+	var/www/html/vulnerabilities/xss_r/source/high.php
+	var/www/html/vulnerabilities/xss_r/source/impossible.php
+	var/www/html/vulnerabilities/xss_r/source/low.php
+	var/www/html/vulnerabilities/xss_r/source/medium.php
+	var/www/html/vulnerabilities/xss_s/
+	var/www/html/vulnerabilities/xss_s/help/
+	var/www/html/vulnerabilities/xss_s/help/help.php
+	var/www/html/vulnerabilities/xss_s/index.php
+	var/www/html/vulnerabilities/xss_s/source/
+	var/www/html/vulnerabilities/xss_s/source/high.php
+	var/www/html/vulnerabilities/xss_s/source/impossible.php
+	var/www/html/vulnerabilities/xss_s/source/low.php
+	var/www/html/vulnerabilities/xss_s/source/medium.php
+
+COPY file:55e9d94279708ad763c17a1ca775e225829b275ace5716ca8a0aff69c70161a4 in /var/www/html/config/
+	var/
+	var/www/
+	var/www/html/
+	var/www/html/config/
+	var/www/html/config/config.inc.php
+
+RUN chown www-data:www-data -R /var/www/html  \
+	&& rm /var/www/html/index.html
+RUN service mysql start  \
+	&& sleep 3  \
+	&& mysql -uroot -pvulnerables -e "CREATE USER app@localhost IDENTIFIED BY 'vulnerables';CREATE DATABASE dvwa;GRANT ALL privileges ON dvwa.* TO 'app'@localhost;"
+EXPOSE 80
+COPY file:f24e7713eb6c0568608bea3ff7b52edda86305cfd5bef0ac4e57efdb15792202 in /
+	main.sh
+
+ENTRYPOINT ["/main.sh"]

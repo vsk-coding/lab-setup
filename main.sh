@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cp -f /var/www/html/php.ini /etc/php/$(ls /etc/php/)/apache2/php.ini
 chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 
 echo '[+] Starting mysql...'

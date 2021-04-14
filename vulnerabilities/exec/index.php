@@ -33,7 +33,7 @@ require_once DVWA_WEB_PAGE_TO_ROOT . "vulnerabilities/exec/source/{$vulnerabilit
 
 $page[ 'body' ] .= "
 <div class=\"body_padded\">
-	<h1>Vulnerability: Command Injection</h1>
+	<h1>Vulnerability: Command Injection </h1>
 
 	<div class=\"vulnerable_code_area\">
 		<h2>Ping a device</h2>
