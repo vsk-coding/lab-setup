@@ -20,6 +20,7 @@ jobs:
           command: |      
             docker images
             echo $CIRCLE_BRANCH
+            docker run --net zapnet --name labimg -d -p 80:80 $CIRCLE_BRANCH
   docker-build-publish:
     executor: docker-publisher
     steps:
