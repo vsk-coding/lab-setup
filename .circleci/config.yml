@@ -18,8 +18,8 @@ jobs:
       - run:
           name: zap-test
           command: |      
-            docker run --rm --net zapnet --name labimg -d -p 80:80 $CIRCLE_BRANCH
-            docker run --rm -v $(pwd):/zap/wrk/:rw --net zapnet -t owasp/zap2docker-weekly zap-baseline.py -t http://$(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)/login.php -g gen.conf -r testreport.html authMethodName : formBasedAuthentication authMethodConfigParams :loginUrl=http://$(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)/login.php?username=admin&password=password&Login=Login
+            docker images
+            echo $CIRCLE_BRANCH
   docker-build-publish:
     executor: docker-publisher
     steps:
